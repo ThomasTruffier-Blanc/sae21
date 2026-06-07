@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Révision Évaluation TP Réseaux — SAE 2.01 / SAE 21</title>
+  <meta name="description" content="Site de révision BUT R&T pour IPv6, TCP/UDP Scapy, NAT iptables, ACL Cisco, VLAN et DHCP.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <aside class="sidebar" aria-label="Navigation principale">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">RT</div>
+      <div>
+        <strong>SAE 2.01 / 21</strong>
+        <span>Révision TP réseaux</span>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#home" data-route="home" class="active">Accueil</a>
+      <a href="#tp1" data-route="tp1">TP1 IPv6</a>
+      <a href="#tp2" data-route="tp2">TP2 TCP/UDP Scapy</a>
+      <a href="#tp3" data-route="tp3">TP3 NAT iptables</a>
+      <a href="#tp4" data-route="tp4">TP4 VLAN ACL DMZ</a>
+      <a href="#tp5" data-route="tp5">TP5 DHCP multi-VLAN</a>
+      <a href="#commands" data-route="commands">Commandes</a>
+      <a href="#oral" data-route="oral">Oral prof</a>
+      <a href="#troubleshooting" data-route="troubleshooting">Dépannage</a>
+      <a href="#exam" data-route="exam">Mode examen</a>
+      <a href="#express" data-route="express">Fiches express</a>
+    </nav>
+
+    <div class="sidebar-progress">
+      <div class="progress-label">
+        <span>Progression</span>
+        <strong id="progress-percent">0%</strong>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div id="progress-fill"></div>
+      </div>
+      <button class="ghost-button full" id="reset-progress" type="button">Réinitialiser</button>
+    </div>
+  </aside>
+
+  <header class="topbar">
+    <button class="icon-button" id="menu-toggle" type="button" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+    <label class="search-wrap" for="global-search">
+      <span aria-hidden="true">⌕</span>
+      <input id="global-search" type="search" placeholder="Rechercher une commande, notion, erreur...">
+    </label>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Changer de thème">
+      <span id="theme-icon" aria-hidden="true">☾</span>
+      <span>Thème</span>
+    </button>
+  </header>
+
+  <main id="main" class="app-shell">
+    <section id="home" class="page-section active" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="section-label">Support pratique BUT Réseaux & Télécommunications</p>
+          <h1 id="home-title">Révision Évaluation TP Réseaux — SAE 2.01 / SAE 21</h1>
+          <p class="hero-subtitle">IPv6, TCP/UDP Scapy, NAT iptables, ACL Cisco, VLAN, DHCP</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#tp1" data-route="tp1">Commencer par le TP1</a>
+            <a class="secondary-button" href="#commands" data-route="commands">Voir les commandes</a>
+          </div>
+        </div>
+        <figure class="hero-visual">
+          <img src="assets/network-lab-hero.png" alt="Illustration sombre d'un laboratoire réseau avec routeurs, câbles et flux de paquets">
+        </figure>
+      </div>
+
+      <section class="dashboard-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Tableau de bord</p>
+            <h2>Les 5 TP à maîtriser</h2>
+          </div>
+          <div class="compact-progress">
+            <span id="home-progress-text">0 notion comprise</span>
+            <div class="progress-track small" aria-hidden="true"><div id="home-progress-fill"></div></div>
+          </div>
+        </div>
+        <div id="tp-cards" class="tp-grid"></div>
+      </section>
+
+      <section class="must-know">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Priorité évaluation</p>
+            <h2>Ce qu'il faut absolument savoir</h2>
+          </div>
+        </div>
+        <div id="must-know-list" class="must-grid"></div>
+      </section>
+
+      <section class="quick-lanes">
+        <a href="#oral" data-route="oral">
+          <strong>Questions du prof</strong>
+          <span>Réponses courtes, propres, faciles à ressortir à l'oral.</span>
+        </a>
+        <a href="#troubleshooting" data-route="troubleshooting">
+          <strong>Méthode de dépannage</strong>
+          <span>Un ordre de diagnostic pour ne pas paniquer en TP.</span>
+        </a>
+        <a href="#exam" data-route="exam">
+          <strong>Mode examen</strong>
+          <span>Situations pratiques aléatoires avec correction.</span>
+        </a>
+      </section>
+    </section>
+
+    <section id="tp-page" class="page-section" aria-live="polite"></section>
+
+    <section id="commands" class="page-section" aria-labelledby="commands-title">
+      <div class="page-header">
+        <p class="section-label">Référence centrale</p>
+        <h1 id="commands-title">Commandes indispensables</h1>
+        <p>Chaque commande indique où l'utiliser, quand l'utiliser, ce qu'il faut obtenir et quoi vérifier si ça bloque.</p>
+      </div>
+      <div class="command-toolbar">
+        <label class="search-wrap local-search" for="command-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="command-search" type="search" placeholder="Filtrer les commandes...">
+        </label>
+      </div>
+      <div id="command-reference" class="command-reference"></div>
+    </section>
+
+    <section id="oral" class="page-section" aria-labelledby="oral-title">
+      <div class="page-header">
+        <p class="section-label">Réponses rapides</p>
+        <h1 id="oral-title">Questions que le prof peut poser</h1>
+        <p>Le but : répondre court, juste, et montrer que tu sais diagnostiquer.</p>
+      </div>
+      <div id="oral-list" class="qa-grid"></div>
+    </section>
+
+    <section id="troubleshooting" class="page-section" aria-labelledby="troubleshooting-title">
+      <div class="page-header">
+        <p class="section-label">Méthode de dépannage</p>
+        <h1 id="troubleshooting-title">Diagnostiquer sans partir dans tous les sens</h1>
+        <p>À appliquer dès qu'un ping, un DHCP, un SSH ou un accès Web ne marche pas.</p>
+      </div>
+      <div id="troubleshooting-steps" class="timeline"></div>
+    </section>
+
+    <section id="exam" class="page-section" aria-labelledby="exam-title">
+      <div class="page-header">
+        <p class="section-label">Entraînement pratique</p>
+        <h1 id="exam-title">Mode examen</h1>
+        <p>Une situation tombe au hasard. Réfléchis aux commandes, puis affiche la correction.</p>
+      </div>
+      <div id="exam-mode" class="exam-panel"></div>
+    </section>
+
+    <section id="express" class="page-section" aria-labelledby="express-title">
+      <div class="page-header">
+        <p class="section-label">Dernier sprint</p>
+        <h1 id="express-title">Fiches express avant l'évaluation</h1>
+        <p>Pour les 10 dernières minutes : relire l'essentiel, pas tout le cours.</p>
+      </div>
+      <div id="express-list" class="express-grid"></div>
+    </section>
+
+    <section id="search-results" class="page-section" aria-labelledby="search-title">
+      <div class="page-header">
+        <p class="section-label">Recherche</p>
+        <h1 id="search-title">Résultats</h1>
+        <p id="search-count"></p>
+      </div>
+      <div id="results-list" class="results-list"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
